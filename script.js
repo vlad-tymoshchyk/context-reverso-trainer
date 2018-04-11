@@ -13,7 +13,7 @@
 		trg = 0,
 		target = '',
 		source = '';
-	if ( /[�-�]/.test(ex[0].children[trg].innerText) ) {
+	if ( /[а-яА-Я]/.test(ex[0].children[trg].innerText) ) {
 		src = 0;
 		trg = 1;
 	}
