@@ -1,6 +1,8 @@
 /* Initial variables */
-var COUNT = 10;
-var CURRENT = 0;
+var COUNT = 10,
+	CURRENT = 0,
+	src_lang = document.querySelector('#src-selector .option').getAttribute('data-value');
+	trg_lang = document.querySelector('#trg-selector .option').getAttribute('data-value');
 
 /* end of variables*/
 var container = document.createElement('div');
@@ -53,6 +55,12 @@ container.innerHTML = `
 		animation: fading 1s forwards;
 		/*animation-fill-mode: forwards*/
 	}
+	.disslashed {
+		animation: fading 2s forwards;
+	}
+	.fadeout {
+
+	}
 	@keyframes fading {	
 		from {
 			opacity: 0;
@@ -99,10 +107,9 @@ container.innerHTML = `
 
 </style>
 `
+
 document.body.append(container);
 var list = document.getElementById('list');
-console.log(main);
-
 
 var ex = Array.from(document.querySelectorAll('.example'));
 ex.sort(function(){
@@ -112,9 +119,25 @@ ex.sort(function(){
 		return 1;
 	};
 });
-src = 0;
-trg = 1;
+src = src_lang == "ru" ? 0 : 1;
+trg = src == 0 ? 1 : 0;
 var numberOfPhrases = ex.length;
+
+if(numberOfPhrases == 0) {
+	var div = document.createElement('div');
+	div.innerHTML = `
+	<h3>На жаль на даній веб-сторінці не вдалося знайти фрази для перекладу
+	Для нормальної роботи програми потрібно виконати наступні кроки:<h3>
+	<h4>
+		<ol style="text-align: left">
+			<li>Відкрити сайт context.reverso.com</li>
+			<li>Ввести у пошуковому полі слово</li>
+			<li>Запустити в javascript-консолі даний код програми</li>
+		</ol>
+	</h4>`;
+	list.append(div);
+}
+
 for(var i = 0; i < numberOfPhrases; i++) {
 	let sector = document.createElement('div'),
 		srcText = document.createElement('div'),
@@ -146,7 +169,10 @@ function goNextArea(e) {
 		parent.children[2].style.display = 'block';
 		this.style.display = 'none';
 		if(parent.nextSibling) {
-			parent.nextSibling.children[3].focus()
+			parent.nextSibling.children[3].scrollIntoView({behavior: "smooth"});
+			setTimeout(function() {
+				parent.nextSibling.children[3].focus();
+			}, 500);
 		}
 		if(parent.nextSibling.nextSibling) {
 			scrollToNext(parent.nextSibling.nextSibling);
@@ -156,8 +182,17 @@ function goNextArea(e) {
 function scrollToNext(elem){
 
 }
-document.querySelector('.ripple').classList.add('fadein');
+function dismiss(){
+	if(confirm("Close trainer?\nThe page will be reloaded")) {
+		location.reload();
+	}
+}
+var ripple = document.querySelector('.ripple');
+ripple.classList.add('fadein');
 
 document.body.addEventListener('keydown', function(e){
 	e.stopPropagation();
+	if(e.key == "Escape") {
+		dismiss();
+	}
 }, true);
