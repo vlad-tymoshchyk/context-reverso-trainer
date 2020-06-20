@@ -1,7 +1,21 @@
-const { expect } = require('chai');
+const { expect } = require("chai");
+const mock = require("mock-require");
+const { spy } = require("sinon");
 
-describe("first test", () => {
-  it("first it", () => {
-    expect(3).to.equal(3);
+describe("application runs correctly", () => {
+  it("app runs without failing", () => {
+    const expressSpy = spy(() => {
+      return {
+        static() {},
+        use() {},
+        get() {},
+        set() {},
+        listen() {}
+      };
+    });
+    expressSpy.static = () => {};
+    mock("express", expressSpy);
+    require("./main");
+    mock.stop("express");
   });
 });
