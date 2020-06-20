@@ -2,11 +2,12 @@
   "name": "context-reverso-trainer",
   "version": "1.0.0",
   "description": "Context-reverso-trainer is a console script which allows you to do universal exercieses on the site of context.reverso.com. Under 'universal exericises' I mean translating little snippets of text with following comparison with right translation. Such exercise is actualy an active use of language and will help you to learn foreign language more effectively.",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
-    "start": "node main.js",
-    "start:dev": "nodemon main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/main.js",
+    "start:dev": "nodemon src/main.js",
+    "test": "mocha src/**/*.test.js",
+    "test:dev": "mocha -w src/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,11 @@
   },
   "homepage": "https://github.com/vlad-tymoshchyk/context-reverso-trainer#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
     "nodemon": "^2.0.4"
   }
 }
