@@ -1,0 +1,19 @@
+{
+  "name": "context-reverso-trainer",
+  "version": "1.0.0",
+  "description": "Context-reverso-trainer is a console script which allows you to do universal exercieses on the site of context.reverso.com. Under 'universal exericises' I mean translating little snippets of text with following comparison with right translation. Such exercise is actualy an active use of language and will help you to learn foreign language more effectively.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vlad-tymoshchyk/context-reverso-trainer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vlad-tymoshchyk/context-reverso-trainer/issues"
+  },
+  "homepage": "https://github.com/vlad-tymoshchyk/context-reverso-trainer#readme"
+}
